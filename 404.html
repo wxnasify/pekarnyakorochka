@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Корочка унесла страницу</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --lav-deep:#9C8AA5;--lav-mid:#B0A8C0;--lav-soft:#D8D2E0;
+  --cream:#F7F3E9;--stone:#E3DFD8;--ink:#1F1B24;--ink-soft:#4A4352;
+  --amber:#C98A5E;--honey:#E8C99B;
+  --disp:'Unbounded',sans-serif;--body:'Inter',sans-serif;--hand:'Caveat',cursive;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--body);background:var(--cream);color:var(--ink);
+  min-height:100vh;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:2rem;text-align:center;
+  background-image:radial-gradient(circle at 20% 10%,rgba(232,201,155,.18),transparent 40%),
+    radial-gradient(circle at 80% 90%,rgba(176,168,192,.14),transparent 40%);
+  overflow:hidden}
+img{display:block;max-width:100%;height:auto}
+a{text-decoration:none;color:inherit}
+
+.bg-word{position:fixed;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-family:var(--disp);font-weight:900;
+  font-size:clamp(10rem,40vw,30rem);line-height:.85;letter-spacing:-.08em;
+  color:var(--lav-soft);opacity:.35;z-index:0;
+  pointer-events:none;user-select:none;white-space:nowrap}
+
+.content{position:relative;z-index:1;max-width:520px}
+.logo{width:clamp(120px,18vw,180px);margin:0 auto 1.5rem;height:auto;
+  filter:drop-shadow(0 16px 30px rgba(31,27,36,.16));
+  animation:float 4s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-3deg)}
+  50%{transform:translateY(-10px) rotate(-6deg)}}
+
+h1{font-family:var(--disp);font-weight:900;
+  font-size:clamp(2.2rem,7vw,4rem);line-height:.95;
+  letter-spacing:-.05em;text-transform:uppercase;margin-bottom:1rem}
+h1 .hand{font-family:var(--hand);font-weight:700;color:var(--amber);
+  text-transform:none;letter-spacing:0;font-size:.9em;
+  transform:rotate(-2deg);display:inline-block}
+
+p{font-size:clamp(.9rem,1.4vw,1.05rem);color:var(--ink-soft);
+  line-height:1.65;margin-bottom:2rem}
+
+.btn{display:inline-flex;align-items:center;gap:.5rem;
+  padding:.85rem 1.75rem;border-radius:999px;
+  background:var(--lav-deep);color:#fff;font-weight:600;font-size:.85rem;
+  transition:transform .25s,background .25s;
+  box-shadow:0 8px 20px -8px rgba(156,138,165,.5)}
+.btn:hover{transform:translateY(-2px);background:var(--amber)}
+.btn::after{content:'→';transition:transform .2s}
+.btn:hover::after{transform:translateX(3px)}
+
+.note{margin-top:1.5rem;font-family:var(--hand);font-size:1.15rem;
+  color:var(--amber);transform:rotate(-2deg)}
+</style>
+</head>
+<body>
+
+<div class="bg-word">404</div>
+
+<div class="content">
+  <img class="logo" src="logo.png" alt="Корочка">
+  <h1>Корочка<br><span class="hand">унесла страницу</span></h1>
+  <p>Наверное, спит на ней. Или съела вместе с круассаном. Вернитесь на главную — там точно всё на месте.</p>
+  <a href="index.html" class="btn">На главную</a>
+  <p class="note">— мы уже ищем её по всей пекарне</p>
+</div>
+
+</body>
+</html>
