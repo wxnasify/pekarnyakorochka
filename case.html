@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Корочка — кейс | Пекарня и кошка</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --lav-deep:#9C8AA5;--lav-mid:#B0A8C0;--lav-soft:#D8D2E0;
+  --cream:#F7F3E9;--stone:#E3DFD8;--ink:#1F1B24;--ink-soft:#4A4352;
+  --amber:#C98A5E;--honey:#E8C99B;
+  --disp:'Unbounded',sans-serif;--body:'Inter',sans-serif;--hand:'Caveat',cursive;
+  --gut:clamp(1.25rem,4vw,3rem);--max:1100px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:var(--body);background:var(--cream);color:var(--ink);
+  line-height:1.55;overflow-x:hidden;
+  background-image:radial-gradient(circle at 15% 0%,rgba(232,201,155,.16),transparent 40%),
+    radial-gradient(circle at 90% 60%,rgba(176,168,192,.12),transparent 40%);
+  background-attachment:fixed}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--max);margin:0 auto;padding-inline:var(--gut)}
+
+/* ОБЩЕЕ */
+.sec{padding:clamp(3rem,8vw,6rem) 0;position:relative}
+.sec-label{display:inline-flex;align-items:center;gap:.5rem;font-size:.65rem;
+  font-weight:700;text-transform:uppercase;letter-spacing:.18em;
+  color:var(--amber);margin-bottom:.75rem}
+.sec-label::before{content:'';width:24px;height:2px;background:var(--amber)}
+.sec-title{font-family:var(--disp);font-weight:900;
+  font-size:clamp(1.5rem,4vw,2.8rem);line-height:1;
+  letter-spacing:-.04em;text-transform:uppercase;margin-bottom:1.25rem}
+.sec-title .hand{font-family:var(--hand);font-weight:700;color:var(--amber);
+  text-transform:none;letter-spacing:0;font-size:1.1em;
+  transform:rotate(-2deg);display:inline-block}
+.sec-lead{font-size:clamp(.95rem,1.4vw,1.1rem);color:var(--ink-soft);
+  line-height:1.7;max-width:640px}
+
+/* ОБЛОЖКА */
+.cover{min-height:100vh;display:flex;flex-direction:column;
+  justify-content:center;padding:3rem 0;position:relative;overflow:hidden}
+.cover-word{position:absolute;top:5%;left:50%;transform:translateX(-50%);
+  font-family:var(--disp);font-weight:900;
+  font-size:clamp(4rem,20vw,16rem);line-height:1;letter-spacing:-.06em;
+  color:var(--lav-soft);opacity:.35;white-space:nowrap;
+  z-index:0;pointer-events:none;user-select:none}
+.cover-inner{position:relative;z-index:1;text-align:center}
+.cover-logo{width:clamp(140px,22vw,220px);height:auto;margin:0 auto 1.5rem;
+  filter:drop-shadow(0 20px 40px rgba(31,27,36,.15))}
+.cover-title{font-family:var(--disp);font-weight:900;
+  font-size:clamp(2rem,6vw,4.5rem);line-height:.95;
+  letter-spacing:-.05em;text-transform:uppercase;margin-bottom:1rem}
+.cover-title .hand{font-family:var(--hand);font-weight:700;color:var(--amber);
+  text-transform:none;letter-spacing:0;font-size:.9em;
+  transform:rotate(-2deg);display:inline-block}
+.cover-sub{font-size:clamp(.9rem,1.4vw,1.15rem);color:var(--ink-soft);
+  max-width:520px;margin:0 auto 2rem;line-height:1.65}
+.cover-meta{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;
+  font-size:.7rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:.15em;color:var(--ink-soft)}
+.cover-meta span{display:inline-flex;align-items:center;gap:.4rem}
+.cover-meta span::before{content:'✻';color:var(--amber)}
+
+/* КАРТОЧКИ */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:1rem;margin-top:2rem}
+.card{background:#fff;border-radius:20px;padding:1.5rem 1.5rem 1.75rem;
+  box-shadow:0 3px 16px -6px rgba(31,27,36,.08);
+  border:1px solid rgba(31,27,36,.04);
+  transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.card:hover{transform:translateY(-5px);
+  box-shadow:0 20px 40px -16px rgba(31,27,36,.18)}
+.card-num{font-family:var(--disp);font-weight:900;font-size:1.6rem;
+  line-height:1;letter-spacing:-.04em;color:var(--lav-deep);margin-bottom:.6rem}
+.card h4{font-size:.68rem;text-transform:uppercase;letter-spacing:.15em;
+  font-weight:700;margin-bottom:.5rem}
+.card p{font-size:.85rem;color:var(--ink-soft);line-height:1.6}
+
+/* ПАЛИТРА */
+.palette{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:1rem;margin-top:2rem}
+.swatch{border-radius:16px;overflow:hidden;
+  box-shadow:0 4px 16px -6px rgba(31,27,36,.12)}
+.swatch-color{aspect-ratio:1;display:flex;align-items:flex-end;padding:1rem;
+  color:#fff;font-family:var(--disp);font-weight:800;font-size:.75rem}
+.swatch-info{background:#fff;padding:.85rem 1rem;font-size:.7rem;
+  color:var(--ink-soft);line-height:1.5}
+.swatch-info strong{display:block;font-size:.65rem;text-transform:uppercase;
+  letter-spacing:.12em;color:var(--ink);margin-bottom:.15rem;font-weight:700}
+
+/* ТИПОГРАФИКА */
+.type-grid{display:grid;
+  grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:2rem}
+@media(max-width:820px){.type-grid{grid-template-columns:1fr}}
+
+.type-card{background:#fff;border-radius:20px;
+  padding:1.75rem 1.5rem 1.5rem;
+  box-shadow:0 3px 16px -6px rgba(31,27,36,.08);
+  display:flex;flex-direction:column;gap:1rem;
+  transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s;
+  overflow:hidden}
+.type-card:hover{transform:translateY(-5px);
+  box-shadow:0 20px 40px -16px rgba(31,27,36,.18)}
+
+.type-word{font-size:clamp(1.4rem,3vw,2.2rem);
+  line-height:1;letter-spacing:-.03em;
+  white-space:nowrap;
+  padding-bottom:1rem;
+  border-bottom:1.5px solid rgba(31,27,36,.12);
+  display:block;
+  width:100%}
+
+.type-meta{display:flex;justify-content:space-between;
+  align-items:baseline;gap:.5rem;flex-wrap:wrap;
+  font-size:.7rem;color:var(--ink-soft)}
+.type-caption-top{font-weight:600;color:var(--ink);white-space:nowrap}
+.type-caption-top::first-letter{color:var(--amber)}
+.type-caption-bottom{font-style:italic;white-space:nowrap}
+
+/* Unbounded */
+.disp-900{font-family:var(--disp);font-weight:900;
+  text-transform:uppercase;letter-spacing:-.04em}
+
+/* Caveat */
+.hand-700{font-family:var(--hand);font-weight:700;
+  color:var(--amber);letter-spacing:0}
+
+/* Inter */
+.body-600{font-family:var(--body);font-weight:600}
+
+.type-use{font-size:.72rem;color:var(--ink-soft);
+  line-height:1.5;margin-top:auto;
+  padding-top:.85rem;border-top:1px dashed rgba(31,27,36,.08)}
+
+@media(max-width:820px){
+  .type-word{font-size:1.6rem}
+}
+@media(max-width:480px){
+  .type-word{font-size:1.3rem}
+  .type-meta{font-size:.62rem}
+  .type-card{padding:1.25rem 1.1rem 1.1rem}
+}
+@media(max-width:720px){
+  .type-line{grid-template-columns:1fr;gap:.75rem}
+  .type-caption{align-items:flex-start;text-align:left}
+  .type-word{font-size:clamp(2rem,10vw,3rem)}
+}
+/* АДАПТИВ */
+@media(max-width:820px){
+  .type-item{grid-template-columns:1fr;gap:1.25rem;padding:1.5rem}
+  .type-info{border-left:none;border-top:2px solid var(--amber);
+    padding-left:0;padding-top:.85rem}
+  .disp-900{font-size:.85rem}
+  .hand-700{font-size:1.15rem}
+  .body-400{font-size:.85rem}
+}
+
+/* СКРИНЫ */
+.shots{display:grid;gap:1.5rem;margin-top:2rem}
+.shot{background:#fff;border-radius:20px;overflow:hidden;
+  box-shadow:0 8px 30px -12px rgba(31,27,36,.18);
+  border:1px solid rgba(31,27,36,.04)}
+.shot-bar{display:flex;align-items:center;gap:.4rem;
+  padding:.7rem 1rem;background:var(--stone);
+  border-bottom:1px solid rgba(31,27,36,.06)}
+.shot-dot{width:9px;height:9px;border-radius:50%;background:var(--lav-mid)}
+.shot-dot:first-child{background:#E8A0A0}
+.shot-dot:nth-child(2){background:#E8C99B}
+.shot-dot:nth-child(3){background:#A8C8A0}
+.shot-url{margin-left:.75rem;font-size:.62rem;color:var(--ink-soft);
+  letter-spacing:.05em}
+.shot img{width:100%;display:block;background:var(--stone)}
+.shot-placeholder{aspect-ratio:16/10;background:
+  linear-gradient(135deg,var(--lav-soft) 0%,var(--stone) 100%);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--ink-soft);text-align:center;padding:2rem;
+  font-family:var(--hand);font-size:1.4rem;line-height:1.3}
+.shot-caption{padding:1rem 1.25rem 1.25rem;font-size:.8rem;
+  color:var(--ink-soft);line-height:1.55}
+.shot-caption strong{display:block;font-family:var(--disp);font-weight:800;
+  font-size:.78rem;text-transform:uppercase;letter-spacing:.02em;
+  color:var(--ink);margin-bottom:.25rem}
+
+/* ДВУХКОЛОНОЧНАЯ СЕТКА */
+.shots-2{grid-template-columns:1fr 1fr}
+@media(max-width:720px){.shots-2{grid-template-columns:1fr}}
+
+/* МОБИЛЬНЫЕ ЭКРАНЫ */
+.mobiles{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;
+  margin-top:2rem;justify-items:center}
+@media(max-width:720px){.mobiles{grid-template-columns:1fr}}
+.mobile{width:100%;max-width:260px;background:#1F1B24;
+  border-radius:32px;padding:.6rem;
+  box-shadow:0 30px 60px -20px rgba(31,27,36,.4)}
+.mobile-screen{background:var(--cream);border-radius:26px;overflow:hidden;
+  aspect-ratio:9/19;display:flex;flex-direction:column}
+.mobile-notch{height:22px;display:flex;justify-content:center;align-items:center}
+.mobile-notch::after{content:'';width:60px;height:5px;background:var(--ink);
+  border-radius:999px;opacity:.15}
+.mobile-screen img{width:100%;height:100%;object-fit:cover;display:block}
+.mobile-content{flex:1;padding:1rem;display:flex;flex-direction:column;
+  gap:.75rem;justify-content:center;align-items:center;
+  color:var(--ink-soft);text-align:center;font-family:var(--hand);
+  font-size:1.1rem;line-height:1.3}
+.mobile-caption{text-align:center;margin-top:.75rem;font-size:.65rem;
+  text-transform:uppercase;letter-spacing:.12em;color:var(--ink-soft);font-weight:600}
+
+/* ДЕТАЛИ */
+.details{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:1rem;margin-top:2rem}
+.detail{background:#fff;border-radius:16px;padding:1.25rem;
+  border:1px solid rgba(31,27,36,.04);
+  box-shadow:0 3px 14px -6px rgba(31,27,36,.08)}
+.detail h5{font-family:var(--disp);font-weight:800;font-size:.8rem;
+  text-transform:uppercase;letter-spacing:-.01em;margin-bottom:.4rem}
+.detail p{font-size:.8rem;color:var(--ink-soft);line-height:1.55}
+
+/* ГИФ-ПЛЕЙСХОЛДЕР */
+.gifs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:1.25rem;margin-top:2rem}
+.gif{background:#fff;border-radius:20px;overflow:hidden;
+  box-shadow:0 8px 30px -12px rgba(31,27,36,.18);
+  border:1px solid rgba(31,27,36,.04)}
+.gif-placeholder{aspect-ratio:16/10;background:
+  linear-gradient(135deg,var(--honey) 0%,var(--lav-soft) 100%);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--ink-soft);text-align:center;padding:1.5rem;
+  font-family:var(--hand);font-size:1.15rem;line-height:1.3}
+.gif img{width:100%;display:block}
+.gif-caption{padding:.85rem 1.1rem 1rem;font-size:.78rem;
+  color:var(--ink-soft);line-height:1.5}
+.gif-caption strong{display:block;font-family:var(--disp);font-weight:800;
+  font-size:.72rem;text-transform:uppercase;color:var(--ink);
+  margin-bottom:.2rem;letter-spacing:.02em}
+
+/* ФИНАЛ */
+.final{background:var(--ink);color:var(--cream);
+  border-radius:32px 32px 0 0;padding:clamp(3rem,8vw,6rem) 0;
+  position:relative;overflow:hidden;margin-top:4rem}
+.final .sec-label{color:var(--honey)}
+.final .sec-label::before{background:var(--honey)}
+.final .sec-title{color:var(--cream)}
+.final .sec-title .hand{color:var(--honey)}
+.final .sec-lead{color:rgba(247,243,233,.85)}
+.final-word{position:absolute;bottom:-10%;right:-5%;
+  font-family:var(--disp);font-weight:900;
+  font-size:clamp(4rem,18vw,14rem);line-height:.85;letter-spacing:-.06em;
+  color:rgba(232,201,155,.06);white-space:nowrap;
+  z-index:0;pointer-events:none;user-select:none}
+.final-inner{position:relative;z-index:1}
+
+.results{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:1.25rem;margin-top:2rem}
+.result{text-align:center;padding:1.5rem 1rem;
+  background:rgba(232,201,155,.08);border-radius:20px;
+  border:1px solid rgba(232,201,155,.15)}
+.result-num{font-family:var(--disp);font-weight:900;
+  font-size:clamp(2rem,5vw,3.5rem);line-height:1;
+  letter-spacing:-.04em;color:var(--honey);margin-bottom:.5rem}
+.result-label{font-size:.65rem;text-transform:uppercase;
+  letter-spacing:.15em;color:rgba(247,243,233,.75);font-weight:600}
+
+/* ФУТЕР */
+.ft{background:var(--ink);color:var(--cream);padding:1.5rem 0;
+  border-top:1px solid rgba(247,243,233,.08)}
+.ft-in{display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:.75rem;font-size:.7rem;color:rgba(247,243,233,.55)}
+.ft-in strong{font-family:var(--disp);font-weight:900;
+  text-transform:uppercase;letter-spacing:-.03em;color:var(--cream);
+  font-size:.85rem}
+.ft-in strong span{color:var(--honey)}
+
+/* АДАПТИВ */
+@media(max-width:720px){
+  .type-item{grid-template-columns:1fr;gap:.75rem}
+  .type-info{text-align:left}
+  .type-sample{font-size:1.8rem}
+  .type-sample.hand{font-size:2.2rem}
+  .type-sample.body{font-size:1.4rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ОБЛОЖКА -->
+<section class="cover">
+  <div class="cover-word">КОРОЧКА</div>
+  <div class="wrap cover-inner">
+    <img class="cover-logo" src="logo.png" alt="Корочка — логотип">
+    <h1 class="cover-title">Корочка<br><span class="hand">пекарня и кошка</span></h1>
+    <p class="cover-sub">Небольшая городская пекарня с кошкой-маскотом. Сайт для быстрого заказа и тёплой атмосферы — за три минуты, по пути, с собой.</p>
+    <div class="cover-meta">
+      <span>UI/UX</span>
+      <span>Брендинг</span>
+      <span>Веб-дизайн</span>
+      <span>2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- О ПРОЕКТЕ -->
+<section class="sec">
+  <div class="wrap">
+    <span class="sec-label">01 — О проекте</span>
+    <h2 class="sec-title">Что это <span class="hand">за проект</span></h2>
+    <p class="sec-lead">«Корочка» — концепт сайта для небольшой пекарни в центре города. Главный герой — кошка Корочка, которая спит, свернувшись вокруг круассана. Сайт решает три задачи: быстро показать меню, дать заказать в пару кликов и передать атмосферу уютной ремесленной пекарни.</p>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-num">01</div>
+        <h4>Быстрый заказ</h4>
+        <p>Категории, карточки с весом и составом, корзина — всё в один клик. Минимум шагов до оформления.</p>
+      </div>
+      <div class="card">
+        <div class="card-num">02</div>
+        <h4>Прозрачность</h4>
+        <p>У каждого товара — вес, теги состава и цветные плашки аллергенов. Гость сразу видит, что берёт.</p>
+      </div>
+      <div class="card">
+        <div class="card-num">03</div>
+        <h4>Атмосфера</h4>
+        <p>Тёплая палитра, рукописные акценты, фотоколлаж и кошка-маскот — сайт звучит как голос пекарни.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ЗАДАЧА -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <span class="sec-label">02 — Задача</span>
+    <h2 class="sec-title">Что нужно <span class="hand">было решить</span></h2>
+    <p class="sec-lead">Пекарня работает в формате «забежать по пути». Гость не хочет читать лонгриды — ему нужно быстро увидеть меню, понять состав и оформить заказ. При этом сайт должен передавать характер пекарни: маленькая, ручная, тёплая. И запоминаться — за счёт маскота.</p>
+
+    <div class="details">
+      <div class="detail">
+        <h5>Цель</h5>
+        <p>Сделать сайт-визитку с онлайн-заказом, который работает быстрее, чем гость дойдёт до пекарни.</p>
+      </div>
+      <div class="detail">
+        <h5>Аудитория</h5>
+        <p>Городские жители 20–45 лет. Забегают утром по пути на работу или вечером домой.</p>
+      </div>
+      <div class="detail">
+        <h5>Ограничения</h5>
+        <p>Маленькая команда, нет времени на сложные интерфейсы. Всё должно быть интуитивно.</p>
+      </div>
+      <div class="detail">
+        <h5>Тон</h5>
+        <p>Тёплый, но не слащавый. Ремесленный, но современный. С юмором — за счёт кошки.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- АЙДЕНТИКА -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <span class="sec-label">03 — Айдентика</span>
+    <h2 class="sec-title">Логотип, палитра, <span class="hand">типографика</span></h2>
+
+    <div class="cards" style="margin-bottom:2.5rem">
+      <div class="card" style="display:flex;flex-direction:column;align-items:center;text-align:center">
+        <img src="logo.png" alt="Корочка" style="width:180px;margin-bottom:1rem">
+        <h4 style="margin-bottom:.35rem">Кошка Корочка</h4>
+        <p style="font-size:.78rem">Маскот пекарни. Спит, свернувшись вокруг круассана. Работает в шапке, в футере, на 404-странице и в соцсетях.</p>
+      </div>
+    </div>
+
+    <h4 style="font-size:.7rem;text-transform:uppercase;letter-spacing:.15em;color:var(--ink-soft);font-weight:700;margin-bottom:.5rem">Палитра</h4>
+    <div class="palette">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#9C8AA5">#9C8AA5</div>
+        <div class="swatch-info"><strong>Лаванда тёмная</strong>Основной акцент</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#C98A5E">#C98A5E</div>
+        <div class="swatch-info"><strong>Янтарь</strong>Кнопки, метки</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#E8C99B;color:#1F1B24">#E8C99B</div>
+        <div class="swatch-info"><strong>Мёд</strong>Фоны, градиенты</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#F7F3E9;color:#1F1B24">#F7F3E9</div>
+        <div class="swatch-info"><strong>Крем</strong>Основной фон</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#1F1B24">#1F1B24</div>
+        <div class="swatch-info"><strong>Чернила</strong>Текст, контраст</div>
+      </div>
+    </div>
+
+                <h4 style="font-size:.7rem;text-transform:uppercase;letter-spacing:.15em;color:var(--ink-soft);font-weight:700;margin:2.5rem 0 .5rem">Типографика</h4>
+            <div class="type-grid">
+
+      <!-- Unbounded -->
+      <div class="type-card">
+        <div class="type-word disp-900">Unbounded</div>
+        <div class="type-meta">
+          <span class="type-caption-bottom">Style : Black</span>
+        </div>
+        <p class="type-use">Заголовки, логотип, крупные акценты</p>
+      </div>
+
+      <!-- Caveat -->
+      <div class="type-card">
+        <div class="type-word hand-700">Caveat</div>
+        <div class="type-meta">
+          <span class="type-caption-bottom">Style : Bold</span>
+        </div>
+        <p class="type-use">Рукописные акценты, подписи, заметки на полях</p>
+      </div>
+
+      <!-- Inter -->
+      <div class="type-card">
+        <div class="type-word body-600">Inter</div>
+        <div class="type-meta">
+          <span class="type-caption-bottom">Style : SemiBold</span>
+        </div>
+        <p class="type-use">Текст, описания, интерфейс</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ЭКРАНЫ -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <span class="sec-label">04 — Экраны</span>
+    <h2 class="sec-title">Как это <span class="hand">выглядит</span></h2>
+    <p class="sec-lead">Ниже — основные экраны сайта. Замените заглушки на реальные скриншоты: сохраните их в <code>img/screens/</code> и вставьте через <code>&lt;img&gt;</code>.</p>
+
+    <div class="shots">
+      <div class="shot">
+        <div class="shot-bar">
+          <span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span>
+          <span class="shot-url">korochka.ru</span>
+        </div>
+        <img src="home.png" alt="Главная страница">
+        <div class="shot-caption">
+          <strong>Главная</strong>
+          Hero-секция: крупный круассан, рукописный акцент, две кнопки. Дальше — тикер, блок «О пекарне», меню и контакты.
+        </div>
+      </div>
+
+      <div class="shots shots-2">
+        <div class="shot">
+          <div class="shot-bar">
+            <span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span>
+          </div>
+          <img src="menu.png" alt="Меню">
+          <div class="shot-caption"><strong>Меню</strong>Фильтры категорий и карточки с ценой, весом и аллергенами.</div>
+        </div>
+        <div class="shot">
+          <div class="shot-bar">
+            <span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span>
+          </div>
+          <img src="modal.png" alt="Модалка товара">
+          <div class="shot-caption"><strong>Карточка товара</strong>Фото, состав, аллергены, цена и кнопка «В корзину».</div>
+        </div>
+      </div>
+
+      <div class="shots shots-2">
+        <div class="shot">
+          <div class="shot-bar">
+            <span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span>
+          </div>
+          <img src="cart.png" alt="Корзина с товарами">
+          <div class="shot-caption"><strong>Корзина</strong>Товары, количество, промокод, итог.</div>
+        </div>
+        <div class="shot">
+          <div class="shot-bar">
+            <span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span>
+          </div>
+          <img src="cart-empty.png" alt="Пустая корзина">
+          <div class="shot-caption"><strong>Пустая корзина</strong>Спящая кошка и фраза «Корочка уже греет печь».</div>
+        </div>
+      </div>
+
+      <div class="shot">
+        <div class="shot-bar">
+          <span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span>
+        </div>
+        <img src="checkout.png" alt="Оформление заказа">
+        <div class="shot-caption">
+          <strong>Оформление заказа</strong>
+          Имя, телефон, способ получения (доставка/самовывоз), адрес, оплата, комментарий и итог.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ТЁМНАЯ ТЕМА -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <span class="sec-label">05 — Тёмная тема</span>
+    <h2 class="sec-title">Работает <span class="hand">и днём, и ночью</span></h2>
+    <p class="sec-lead">Переключатель в шапке (солнце/луна). Выбор сохраняется в браузере, при следующем визите тема подхватывается автоматически.</p>
+
+    <div class="shots shots-2" style="margin-top:2rem">
+      <div class="shot">
+        <div class="shot-bar">
+          <span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span>
+        </div>
+        <img src="light.png" alt="Светлая тема">
+        <div class="shot-caption"><strong>Светлая</strong>Кремовый фон, тёплые акценты.</div>
+      </div>
+      <div class="shot">
+        <div class="shot-bar">
+          <span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span>
+        </div>
+        <img src="dark.png" alt="Тёмная тема">
+        <div class="shot-caption"><strong>Тёмная</strong>Глубокий фон, приглушённые акценты.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- МОБИЛЬНАЯ ВЕРСИЯ -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <span class="sec-label">06 — Мобильная версия</span>
+    <h2 class="sec-title">На телефоне <span class="hand">удобно</span></h2>
+    <p class="sec-lead">Сайт адаптирован под мобильные: hero с фото, меню в одну колонку, бургер-меню, корзина и оформление на всю ширину.</p>
+
+    <div class="mobiles">
+      <div>
+        <div class="mobile">
+          <div class="mobile-screen">
+            <div class="mobile-notch"></div>
+            <img src="mobile-home.png" alt="Мобильная главная" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="mobile-content" style="display:none">Главная —<br>круассан<br>и кошка</div>
+          </div>
+        </div>
+        <div class="mobile-caption">Главная</div>
+      </div>
+      <div>
+        <div class="mobile">
+          <div class="mobile-screen">
+            <div class="mobile-notch"></div>
+            <img src="mobile-menu.png" alt="Мобильное меню" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="mobile-content" style="display:none">Меню —<br>карточки<br>в одну колонку</div>
+          </div>
+        </div>
+        <div class="mobile-caption">Меню</div>
+      </div>
+      <div>
+        <div class="mobile">
+          <div class="mobile-screen">
+            <div class="mobile-notch"></div>
+            <img src="mobile-cart.png" alt="Мобильная корзина" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="mobile-content" style="display:none">Корзина —<br>на всю<br>ширину</div>
+          </div>
+        </div>
+        <div class="mobile-caption">Корзина</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ДЕТАЛИ -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <span class="sec-label">07 — Детали</span>
+    <h2 class="sec-title">Что делает <span class="hand">проект живым</span></h2>
+
+    <div class="details">
+      <div class="detail">
+        <h5>Аллергены</h5>
+        <p>Цветные плашки с сокращениями (ГЛ, МЛ, ЯЙ) и подсказкой при наведении. Помогают гостям с ограничениями.</p>
+      </div>
+      <div class="detail">
+        <h5>Рукописные акценты</h5>
+        <p>Курсивный Caveat добавляет «человеческий» голос — как заметка на полях.</p>
+      </div>
+      <div class="detail">
+        <h5>Микроанимации</h5>
+        <p>Карточки приподнимаются, фото круассана поворачивается, корзина «подпрыгивает» при добавлении.</p>
+      </div>
+      <div class="detail">
+        <h5>Промокод</h5>
+        <p>Поле в корзине с проверкой. KOROCHKA10 — скидка 10%, CATLOVE — бесплатная доставка.</p>
+      </div>
+      <div class="detail">
+        <h5>Тикер</h5>
+        <p>Бегущая строка со словами «Текстура · Слоистость · Корочка» — передаёт характер выпечки.</p>
+      </div>
+      <div class="detail">
+        <h5>Маскот</h5>
+        <p>Кошка Корочка в шапке, в отзывах, в пустой корзине, на 404 и на экране успешного заказа.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- МИКРОАНИМАЦИИ -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <span class="sec-label">08 — Микроанимации</span>
+    <h2 class="sec-title">Сайт <span class="hand">оживает</span></h2>
+    <p class="sec-lead">Замените заглушки на GIF-анимации. Записать их можно через ScreenToGif (Windows) или LICEcap (Mac/Win).</p>
+
+    <div class="gifs">
+      <div class="gif">
+        <div class="gif-placeholder">Ховер на карточку товара</div>
+        <div class="gif-caption">
+          <strong>Ховер на карточку</strong>
+          Карточка поднимается, фото круассана слегка поворачивается.
+        </div>
+      </div>
+      <div class="gif">
+        <div class="gif-placeholder">Добавление в корзину</div>
+        <div class="gif-caption">
+          <strong>Добавление в корзину</strong>
+          Кнопка становится зелёной с галочкой, счётчик растёт.
+        </div>
+      </div>
+      <div class="gif">
+        <div class="gif-placeholder">Открытие корзины</div>
+        <div class="gif-caption">
+          <strong>Корзина выезжает</strong>
+          Панель появляется справа с лёгкой задержкой.
+        </div>
+      </div>
+      <div class="gif">
+        <div class="gif-placeholder">Переключение темы</div>
+        <div class="gif-caption">
+          <strong>Тёмная тема</strong>
+          Плавный переход всех цветов и фонов.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 404 -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <span class="sec-label">09 — 404</span>
+    <h2 class="sec-title">Даже ошибки <span class="hand">с кошкой</span></h2>
+    <p class="sec-lead">Страница 404 с парящей кошкой и фразой «Корочка унесла страницу». Помогает не терять гостя и напоминает о маскоте.</p>
+
+    <div class="shots" style="margin-top:2rem">
+      <div class="shot">
+        <div class="shot-bar">
+          <span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span>
+          <span class="shot-url">korochka.ru/404</span>
+        </div>
+        <img src="404.png" alt="404">
+        <div class="shot-caption">
+          <strong>Страница 404</strong>
+          Парящая кошка, крупная цифра «404» на фоне и кнопка «На главную».
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- РЕЗУЛЬТАТ -->
+<section class="final">
+  <div class="final-word">КОРОЧКА</div>
+  <div class="wrap final-inner">
+    <span class="sec-label">10 — Результат</span>
+    <h2 class="sec-title">Что <span class="hand">получилось</span></h2>
+    <p class="sec-lead">Сайт, который работает быстро и звучит тепло. С маскотом, характером и вниманием к деталям — от аллергенов до промокодов и тёмной темы.</p>
+
+    <div class="results">
+      <div class="result">
+        <div class="result-num">21</div>
+        <div class="result-label">Товар в меню</div>
+      </div>
+      <div class="result">
+        <div class="result-num">7</div>
+        <div class="result-label">Категорий</div>
+      </div>
+      <div class="result">
+        <div class="result-num">9</div>
+        <div class="result-label">Типов аллергенов</div>
+      </div>
+      <div class="result">
+        <div class="result-num">3</div>
+        <div class="result-label">Способа оплаты</div>
+      </div>
+    </div>
+
+    <div class="details" style="margin-top:2.5rem">
+      <div class="detail" style="background:rgba(232,201,155,.08);border-color:rgba(232,201,155,.15)">
+        <h5 style="color:var(--honey)">Что сработало</h5>
+        <p style="color:rgba(247,243,233,.8)">Маскот-кошка, тёплая палитра и рукописные акценты сделали сайт узнаваемым и живым. Аллергены и промокоды добавили функциональность.</p>
+      </div>
+      <div class="detail" style="background:rgba(232,201,155,.08);border-color:rgba(232,201,155,.15)">
+        <h5 style="color:var(--honey)">Что можно развить</h5>
+        <p style="color:rgba(247,243,233,.8)">Личный кабинет с историей заказов, программа лояльности для постоянных гостей, интеграция с картами доставки.</p>
+      </div>
+      <div class="detail" style="background:rgba(232,201,155,.08);border-color:rgba(232,201,155,.15)">
+        <h5 style="color:var(--honey)">Чему научились</h5>
+        <p style="color:rgba(247,243,233,.8)">Как совместить простоту интерфейса с характером бренда. Как маленькая деталь — кошка в углу — делает весь проект теплее.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ФУТЕР -->
+<footer class="ft">
+  <div class="wrap ft-in">
+    <strong>Корочка <span>· кейс</span></strong>
+    <span>UI/UX · Брендинг · Веб-дизайн · 2026</span>
+  </div>
+</footer>
+
+</body>
+</html>
